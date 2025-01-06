@@ -1,25 +1,24 @@
 ﻿using FluentAssertions;
-using Slack.Webhooks.Blocks;
-using Slack.Webhooks.Elements;
+using PanoramicData.Slack.Webhooks.Elements;
+using PanoramicData.Slack.Webhooks.Blocks;
 using Xunit;
 
-namespace Slack.Webhooks.Tests
+namespace PanoramicData.Slack.Webhooks.Tests;
+
+public class HeaderBlockFixtures
 {
-    public class HeaderBlockFixtures
-    {
-        [Fact]
-        public void ShouldSerializeText()
-        {
-            // arrange
-            var textObject = new TextObject {Text = "This is text", Type = TextObject.TextType.PlainText};
-            var header = new Header {Text = textObject};
+	[Fact]
+	public void ShouldSerializeText()
+	{
+		// arrange
+		var textObject = new TextObject { Text = "This is text", Type = TextObject.TextType.PlainText };
+		var header = new Header { Text = textObject };
 
-            // act
-            var textPayload = SlackClient.SerializeObject(textObject);
-            var payload = SlackClient.SerializeObject(header);
+		// act
+		var textPayload = SlackClient.SerializeObject(textObject);
+		var payload = SlackClient.SerializeObject(header);
 
-            // assert
-            payload.Should().Contain($"\"text\":{textPayload}");
-        }
-    }
+		// assert
+		payload.Should().Contain($"\"text\":{textPayload}");
+	}
 }

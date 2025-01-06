@@ -1,10 +1,12 @@
-namespace Slack.Webhooks.Action
+namespace PanoramicData.Slack.Webhooks.Action;
+
+public class Confirm
 {
-    public class Confirm
-    {
-        public string Title { get; set; }
-        public string Text { get; set; }
-        public string OkText { get; set; }
-        public string DismissText { get; set; }
-    }
+	public string? Title { get; set; }
+
+	public string? Text { get; set; }
+
+	public string? OkText { get; set; }
+
+	public string? DismissText { get; set; }
 }

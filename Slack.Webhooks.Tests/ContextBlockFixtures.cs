@@ -1,44 +1,41 @@
-using System.Collections.Generic;
 using FluentAssertions;
-using Slack.Webhooks.Blocks;
-using Slack.Webhooks.Elements;
-using Slack.Webhooks.Interfaces;
+using PanoramicData.Slack.Webhooks.Blocks;
+using PanoramicData.Slack.Webhooks.Elements;
 using Xunit;
 
-namespace Slack.Webhooks.Tests
+namespace PanoramicData.Slack.Webhooks.Tests;
+
+public class ContextBlockFixtures
 {
-    public class ContextBlockFixtures
-    {
-        [Fact]
-        public void ShouldBeAbleToContainImageElements()
-        {
-            // arrange
-            var context = new Context
-            {
-                Elements = new List<IContextElement>() { new Blocks.Image() }
-            };
+	[Fact]
+	public void ShouldBeAbleToContainImageElements()
+	{
+		// arrange
+		var context = new Context
+		{
+			Elements = [new Blocks.Image()]
+		};
 
-            // act
-            var payload = SlackClient.SerializeObject(context);
+		// act
+		var payload = SlackClient.SerializeObject(context);
 
-            // assert
-            payload.Should().Contain("\"elements\":["); // bleeugh
-        }
+		// assert
+		payload.Should().Contain("\"elements\":["); // bleeugh
+	}
 
-        [Fact]
-        public void ShouldBeAbleToContainTextElements()
-        {
-            // arrange
-            var context = new Context 
-            {
-                Elements = new List<IContextElement>() { new TextObject() }
-            };
+	[Fact]
+	public void ShouldBeAbleToContainTextElements()
+	{
+		// arrange
+		var context = new Context
+		{
+			Elements = [new TextObject()]
+		};
 
-            // act
-            var payload = SlackClient.SerializeObject(context);
+		// act
+		var payload = SlackClient.SerializeObject(context);
 
-            // assert
-            payload.Should().Contain("\"elements\":["); // bleeugh
-        }
-    }
+		// assert
+		payload.Should().Contain("\"elements\":["); // bleeugh
+	}
 }

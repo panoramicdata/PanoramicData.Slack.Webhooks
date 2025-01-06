@@ -1,0 +1,56 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>netstandard2.0</TargetFrameworks>
+		<LangVersion>latest</LangVersion>
+		<AnalysisLevel>latest-recommended</AnalysisLevel>
+		<AnalysisMode>recommended</AnalysisMode>
+		<Nullable>enable</Nullable>
+		<Deterministic>False</Deterministic>
+		<GenerateAssemblyInfo>False</GenerateAssemblyInfo>
+		<RepositoryUrl>https://github.com/panoramicdata/PanoramicData.Slack.Webhooks.git</RepositoryUrl>
+		<ApplicationIcon>Panoramic Data.ico</ApplicationIcon>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<Title>PanoramicData.Slack.Webhooks</Title>
+		<Authors>Panoramic Data Limited,mrb0nj</Authors>
+		<Company>Panoramic Data Limited</Company>
+		<Description>Simple integration with Slack's Incoming/Outgoing webhooks API for .net</Description>
+		<Copyright>Panoramic Data Limited</Copyright>
+		<PackageProjectUrl>https://github.com/panoramicdata/PanoramicData.Slack.Webhooks</PackageProjectUrl>
+		<PackageIcon>slack.png</PackageIcon>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageTags>slack;webhook;webhooks</PackageTags>
+		<PackageReleaseNotes>First release as .NET Standard 2.0</PackageReleaseNotes>
+		<IncludeSymbols>True</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<PackageLicenseExpression>mit</PackageLicenseExpression>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Content Include="Panoramic Data.ico" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Nerdbank.GitVersioning" Version="3.7.112">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Properties\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="..\README.md">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	  <None Include="..\slack.png">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	</ItemGroup>
+
+</Project>

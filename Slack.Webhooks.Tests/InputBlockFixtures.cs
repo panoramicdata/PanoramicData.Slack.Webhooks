@@ -1,89 +1,85 @@
 using System.Collections.Generic;
 using FluentAssertions;
-using Slack.Webhooks.Blocks;
-using Slack.Webhooks.Elements;
-using Slack.Webhooks.Interfaces;
+using PanoramicData.Slack.Webhooks.Interfaces;
+using PanoramicData.Slack.Webhooks.Blocks;
+using PanoramicData.Slack.Webhooks.Elements;
 using Xunit;
 
-namespace Slack.Webhooks.Tests
+namespace PanoramicData.Slack.Webhooks.Tests;
+
+public class InputBlockFixtures
 {
-    public class InputBlockFixtures
-    {
-        [Fact]
-        public void ShouldSerializeLabel()
-        {
-            // arrange
-            var textObject = new TextObject { Text = "Test label"};
-            var input = new Input { Label = textObject };
+	[Fact]
+	public void ShouldSerializeLabel()
+	{
+		// arrange
+		var textObject = new TextObject { Text = "Test label" };
+		var input = new Input { Label = textObject };
 
-            // act
-            var textPayload = SlackClient.SerializeObject(textObject);
-            var payload = SlackClient.SerializeObject(input);
+		// act
+		var textPayload = SlackClient.SerializeObject(textObject);
+		var payload = SlackClient.SerializeObject(input);
 
-            // assert
-            payload.Should().Contain($"\"label\":{textPayload}");
-        }
+		// assert
+		payload.Should().Contain($"\"label\":{textPayload}");
+	}
 
-        [Fact]
-        public void ShouldSerializeHint()
-        {
-            // arrange
-            var textObject = new TextObject { Text = "Test hint"};
-            var input = new Input { Hint = textObject };
+	[Fact]
+	public void ShouldSerializeHint()
+	{
+		// arrange
+		var textObject = new TextObject { Text = "Test hint" };
+		var input = new Input { Hint = textObject };
 
-            // act
-            var textPayload = SlackClient.SerializeObject(textObject);
-            var payload = SlackClient.SerializeObject(input);
+		// act
+		var textPayload = SlackClient.SerializeObject(textObject);
+		var payload = SlackClient.SerializeObject(input);
 
-            // assert
-            payload.Should().Contain($"\"hint\":{textPayload}");
-        }
-        
-        [Fact]
-        public void ShouldSerializeOptional()
-        {
-            // arrange
-            var input = new Input { Optional = true };
+		// assert
+		payload.Should().Contain($"\"hint\":{textPayload}");
+	}
 
-            // act
-            var payload = SlackClient.SerializeObject(input);
+	[Fact]
+	public void ShouldSerializeOptional()
+	{
+		// arrange
+		var input = new Input { Optional = true };
 
-            // assert
-            payload.Should().Contain("\"optional\":true");
-        }
+		// act
+		var payload = SlackClient.SerializeObject(input);
 
-        [Theory]
-        [MemberData(nameof(GetInputElementData))]
-        public void ShouldSerializeInputElementTypes(object element)
-        {
-            // arrange
-            var input = new Input { Element = (IInputElement)element };
+		// assert
+		payload.Should().Contain("\"optional\":true");
+	}
 
-            // act
-            var elementPayload = SlackClient.SerializeObject(element);
-            var payload = SlackClient.SerializeObject(input);
+	[Theory]
+	[MemberData(nameof(GetInputElementData))]
+	public void ShouldSerializeInputElementTypes(object element)
+	{
+		// arrange
+		var input = new Input { Element = (IInputElement)element };
 
-            // arrange
-            payload.Should().Contain($"\"element\":{elementPayload}");
-        }
+		// act
+		var elementPayload = SlackClient.SerializeObject(element);
+		var payload = SlackClient.SerializeObject(input);
 
-        public static IEnumerable<object[]> GetInputElementData()
-        {
-            return new List<object[]>
-            {
-                new object[] { new PlainTextInput() },
-                new object[] { new SelectChannels() },
-                new object[] { new SelectUsers() },
-                new object[] { new SelectConversations() },
-                new object[] { new SelectStatic() },
-                new object[] { new SelectExternal() },
-                new object[] { new MultiSelectChannels() },
-                new object[] { new MultiSelectUsers() },
-                new object[] { new MultiSelectConversations() },
-                new object[] { new MultiSelectStatic() },
-                new object[] { new MultiSelectExternal() },
-                new object[] { new DatePicker() }
-            };
-        }
-    }
+		// arrange
+		payload.Should().Contain($"\"element\":{elementPayload}");
+	}
+
+	public static IEnumerable<object[]> GetInputElementData() =>
+			[
+				[new PlainTextInput()],
+				[new SelectChannels()],
+				[new SelectUsers()],
+				[new SelectConversations()],
+				[new SelectStatic()],
+				[new SelectExternal()],
+				[new MultiSelectChannels()],
+				[new MultiSelectUsers()],
+				[new MultiSelectConversations()],
+				[new MultiSelectStatic()],
+				[new MultiSelectExternal()],
+				[new DatePicker()]
+			];
 }

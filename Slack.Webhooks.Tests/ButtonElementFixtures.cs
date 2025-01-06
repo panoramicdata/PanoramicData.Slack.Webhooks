@@ -1,102 +1,101 @@
 using FluentAssertions;
-using Slack.Webhooks.Elements;
+using PanoramicData.Slack.Webhooks.Elements;
 using Xunit;
 
-namespace Slack.Webhooks.Tests
+namespace PanoramicData.Slack.Webhooks.Tests;
+
+public class ButtonElementFixtures
 {
-    public class ButtonElementFixtures
-    {
-        [Fact]
-        public void ShouldSerializeType()
-        {
-            // arrange
-            var button = new Button();
+	[Fact]
+	public void ShouldSerializeType()
+	{
+		// arrange
+		var button = new Button();
 
-            // act
-            var payload = SlackClient.SerializeObject(button);
+		// act
+		var payload = SlackClient.SerializeObject(button);
 
-            // assert
-            payload.Should().Contain("\"type\":\"button\"");
-        }
+		// assert
+		payload.Should().Contain("\"type\":\"button\"");
+	}
 
-        [Fact]
-        public void ShouldSerializeText()
-        {
-            // arrange
-            var button = new Button { Text = new TextObject { Text = "Test Text" }};
+	[Fact]
+	public void ShouldSerializeText()
+	{
+		// arrange
+		var button = new Button { Text = new TextObject { Text = "Test Text" } };
 
-            // act
-            var payload = SlackClient.SerializeObject(button);
+		// act
+		var payload = SlackClient.SerializeObject(button);
 
-            // assert
-            payload.Should().Contain("\"text\":{\"type\":\"plain_text\"");
-        }
+		// assert
+		payload.Should().Contain("\"text\":{\"type\":\"plain_text\"");
+	}
 
-        [Fact]
-        public void ShouldSerializeActionId()
-        {
-            // arrange
-            var button = new Button { ActionId = "Action123" };
+	[Fact]
+	public void ShouldSerializeActionId()
+	{
+		// arrange
+		var button = new Button { ActionId = "Action123" };
 
-            // act
-            var payload = SlackClient.SerializeObject(button);
+		// act
+		var payload = SlackClient.SerializeObject(button);
 
-            // assert
-            payload.Should().Contain("\"action_id\":\"Action123\"");
-        }
+		// assert
+		payload.Should().Contain("\"action_id\":\"Action123\"");
+	}
 
-        [Fact]
-        public void ShouldSerializeUrl()
-        {
-            // arrange
-            var button = new Button { Url = "http://someurl.com" };
+	[Fact]
+	public void ShouldSerializeUrl()
+	{
+		// arrange
+		var button = new Button { Url = "http://someurl.com" };
 
-            // act
-            var payload = SlackClient.SerializeObject(button);
+		// act
+		var payload = SlackClient.SerializeObject(button);
 
-            // assert
-            payload.Should().Contain("\"url\":\"http://someurl.com\"");
-        }
+		// assert
+		payload.Should().Contain("\"url\":\"http://someurl.com\"");
+	}
 
-        [Fact]
-        public void ShouldSerializeValue()
-        {
-            // arrange
-            var button = new Button { Value = "Value123" };
+	[Fact]
+	public void ShouldSerializeValue()
+	{
+		// arrange
+		var button = new Button { Value = "Value123" };
 
-            // act
-            var payload = SlackClient.SerializeObject(button);
+		// act
+		var payload = SlackClient.SerializeObject(button);
 
-            // assert
-            payload.Should().Contain("\"value\":\"Value123\"");
-        }
+		// assert
+		payload.Should().Contain("\"value\":\"Value123\"");
+	}
 
-        [Fact]
-        public void ShouldSerializeStyle()
-        {
-            // arrange
-            var button = new Button { Style = "Style123" };
+	[Fact]
+	public void ShouldSerializeStyle()
+	{
+		// arrange
+		var button = new Button { Style = "Style123" };
 
-            // act
-            var payload = SlackClient.SerializeObject(button);
+		// act
+		var payload = SlackClient.SerializeObject(button);
 
-            // assert
-            payload.Should().Contain("\"style\":\"Style123\"");
-        }
+		// assert
+		payload.Should().Contain("\"style\":\"Style123\"");
+	}
 
-        [Fact]
-        public void ShouldSerializeConfirm()
-        {
-            // arrange
-            var confirm = new Confirmation();
-            var button = new Button { Confirm = confirm };
+	[Fact]
+	public void ShouldSerializeConfirm()
+	{
+		// arrange
+		var confirm = new Confirmation();
+		var button = new Button { Confirm = confirm };
 
-            // act
-            var confirmPayload = SlackClient.SerializeObject(confirm);
-            var payload = SlackClient.SerializeObject(button);
+		// act
+		var confirmPayload = SlackClient.SerializeObject(confirm);
+		var payload = SlackClient.SerializeObject(button);
 
-            // assert
-            payload.Should().Contain($"\"confirm\":{confirmPayload}");
-        }
-    }
+		// assert
+		payload.Should().Contain($"\"confirm\":{confirmPayload}");
+	}
 }

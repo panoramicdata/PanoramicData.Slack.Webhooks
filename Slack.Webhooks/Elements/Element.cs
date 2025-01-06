@@ -1,20 +1,17 @@
-namespace Slack.Webhooks.Elements
+namespace PanoramicData.Slack.Webhooks.Elements;
+
+public class Element
 {
-    public class Element
-    {
-        /// <summary>
-        /// The type of element represented by <see cref="ElementType"/>.
-        /// </summary>
-        public ElementType Type { get; set; }
+	/// <summary>
+	/// The type of element represented by <see cref="ElementType"/>.
+	/// </summary>
+	public ElementType Type { get; set; }
 
-        protected Element(ElementType elementType)
-        {
-            Type = elementType;
-        }
+	protected Element(ElementType elementType)
+	{
+		Type = elementType;
+	}
 
-        public bool ShouldSerializeType()
-        {
-            return Type != ElementType.Unknown;
-        }
-    }
+	public bool ShouldSerializeType()
+		=> Type != ElementType.Unknown;
 }

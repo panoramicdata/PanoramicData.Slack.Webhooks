@@ -1,102 +1,101 @@
 using FluentAssertions;
-using Slack.Webhooks.Elements;
+using PanoramicData.Slack.Webhooks.Elements;
 using Xunit;
 
-namespace Slack.Webhooks.Tests
+namespace PanoramicData.Slack.Webhooks.Tests;
+
+public class PlainTextInputElementFixtures
 {
-    public class PlainTextInputElementFixtures
-    {
-        [Fact]
-        public void ShouldSerializeType()
-        {
-            // arrange
-            var input = new PlainTextInput();
+	[Fact]
+	public void ShouldSerializeType()
+	{
+		// arrange
+		var input = new PlainTextInput();
 
-            // act
-            var payload = SlackClient.SerializeObject(input);
+		// act
+		var payload = SlackClient.SerializeObject(input);
 
-            // assert
-            payload.Should().Contain("\"type\":\"plain_text_input\"");
-        }
+		// assert
+		payload.Should().Contain("\"type\":\"plain_text_input\"");
+	}
 
-        [Fact]
-        public void ShouldSerializeActionId()
-        {
-            // arrange
-            var input = new PlainTextInput { ActionId = "Action123" };
+	[Fact]
+	public void ShouldSerializeActionId()
+	{
+		// arrange
+		var input = new PlainTextInput { ActionId = "Action123" };
 
-            // act
-            var payload = SlackClient.SerializeObject(input);
+		// act
+		var payload = SlackClient.SerializeObject(input);
 
-            // assert
-            payload.Should().Contain("\"action_id\":\"Action123\"");
-        }
-        
-        [Fact]
-        public void ShouldSerializePlaceholder()
-        {
-            // arrange
-            var text = new TextObject();
-            var input = new PlainTextInput { Placeholder = text };
+		// assert
+		payload.Should().Contain("\"action_id\":\"Action123\"");
+	}
 
-            // act
-            var textPayload = SlackClient.SerializeObject(text);
-            var payload = SlackClient.SerializeObject(input);
+	[Fact]
+	public void ShouldSerializePlaceholder()
+	{
+		// arrange
+		var text = new TextObject();
+		var input = new PlainTextInput { Placeholder = text };
 
-            // assert
-            payload.Should().Contain($"\"placeholder\":{textPayload}");
-        }
+		// act
+		var textPayload = SlackClient.SerializeObject(text);
+		var payload = SlackClient.SerializeObject(input);
 
-        [Fact]
-        public void ShouldSerializeInitialValue()
-        {
-            // arrange
-            var input = new PlainTextInput { InitialValue = "Value123" };
+		// assert
+		payload.Should().Contain($"\"placeholder\":{textPayload}");
+	}
 
-            // act
-            var payload = SlackClient.SerializeObject(input);
+	[Fact]
+	public void ShouldSerializeInitialValue()
+	{
+		// arrange
+		var input = new PlainTextInput { InitialValue = "Value123" };
 
-            // assert
-            payload.Should().Contain("\"initial_value\":\"Value123\"");
-        }
+		// act
+		var payload = SlackClient.SerializeObject(input);
 
-        [Fact]
-        public void ShouldSerializeMultiLine()
-        {
-            // arrange
-            var input = new PlainTextInput { MultiLine = true };
+		// assert
+		payload.Should().Contain("\"initial_value\":\"Value123\"");
+	}
 
-            // act
-            var payload = SlackClient.SerializeObject(input);
+	[Fact]
+	public void ShouldSerializeMultiLine()
+	{
+		// arrange
+		var input = new PlainTextInput { MultiLine = true };
 
-            // assert
-            payload.Should().Contain("\"multi_line\":true");
-        }
+		// act
+		var payload = SlackClient.SerializeObject(input);
 
-        [Fact]
-        public void ShouldSerializeMinLength()
-        {
-            // arrange
-            var input = new PlainTextInput { MinLength = 10 };
+		// assert
+		payload.Should().Contain("\"multi_line\":true");
+	}
 
-            // act
-            var payload = SlackClient.SerializeObject(input);
+	[Fact]
+	public void ShouldSerializeMinLength()
+	{
+		// arrange
+		var input = new PlainTextInput { MinLength = 10 };
 
-            // assert
-            payload.Should().Contain("\"min_length\":10");
-        }
+		// act
+		var payload = SlackClient.SerializeObject(input);
 
-        [Fact]
-        public void ShouldSerializeMaxLength()
-        {
-            // arrange
-            var input = new PlainTextInput { MaxLength = 10 };
+		// assert
+		payload.Should().Contain("\"min_length\":10");
+	}
 
-            // act
-            var payload = SlackClient.SerializeObject(input);
+	[Fact]
+	public void ShouldSerializeMaxLength()
+	{
+		// arrange
+		var input = new PlainTextInput { MaxLength = 10 };
 
-            // assert
-            payload.Should().Contain("\"max_length\":10");
-        }
-    }
+		// act
+		var payload = SlackClient.SerializeObject(input);
+
+		// assert
+		payload.Should().Contain("\"max_length\":10");
+	}
 }
