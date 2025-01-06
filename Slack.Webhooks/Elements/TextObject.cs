@@ -24,7 +24,7 @@ public class TextObject(string? text = null) : IContextElement
 	/// <summary>
 	/// The formatting to use for this text object. Can be one of <see cref="TextType.PlainText"/> or <see cref="TextType.Markdown"/>.
 	/// </summary>
-	public TextType? Type { get; set; }
+	public TextType Type { get; set; }
 
 	/// <summary>
 	/// The text for the block. This field accepts any of the standard text formatting markup when type is <see cref="TextType.Markdown"/>.
