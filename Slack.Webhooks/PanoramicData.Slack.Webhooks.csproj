@@ -23,7 +23,7 @@
 		<PackageReleaseNotes>First release as .NET Standard 2.0</PackageReleaseNotes>
 		<IncludeSymbols>True</IncludeSymbols>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
-		<PackageLicenseExpression>mit</PackageLicenseExpression>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 	</PropertyGroup>
 
 	<ItemGroup>
