@@ -1,5 +1,5 @@
-using System.Collections.Generic;
-using FluentAssertions;
+﻿using System.Collections.Generic;
+using AwesomeAssertions;
 using PanoramicData.Slack.Webhooks.Interfaces;
 using PanoramicData.Slack.Webhooks.Blocks;
 using PanoramicData.Slack.Webhooks.Elements;

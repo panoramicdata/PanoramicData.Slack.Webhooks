@@ -1,4 +1,4 @@
-using FluentAssertions;
+﻿using AwesomeAssertions;
 using PanoramicData.Slack.Webhooks.Elements;
 using Xunit;
 
