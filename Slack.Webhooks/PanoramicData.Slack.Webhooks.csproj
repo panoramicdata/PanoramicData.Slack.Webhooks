@@ -24,6 +24,7 @@
     <IncludeSymbols>True</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageId>PanoramicData.Slack.Webhooks</PackageId>
   </PropertyGroup>
   <ItemGroup>
     <Content Include="Panoramic Data.ico" />
