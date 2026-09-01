@@ -1,4 +1,5 @@
 ﻿using AwesomeAssertions;
+using File = PanoramicData.Slack.Webhooks.Blocks.File;
 using PanoramicData.Slack.Webhooks.Blocks;
 using Xunit;
 

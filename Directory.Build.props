@@ -6,5 +6,10 @@
     <Copyright>Copyright © Panoramic Data Limited</Copyright>
     <Authors>Panoramic Data Limited</Authors>
     <Company>Panoramic Data Limited</Company>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <Nullable>enable</Nullable>
+    <!-- Suppress diagnostics that conflict with the public Slack API surface (Option, Select, Ice_Cream, Short)
+         and the partial XML documentation coverage; TreatWarningsAsErrors stays on for everything else. -->
+    <NoWarn>CS1572;CS1573;CS1574;CS1591;CA1707;CA1716;CA1720</NoWarn>
   </PropertyGroup>
 </Project>
