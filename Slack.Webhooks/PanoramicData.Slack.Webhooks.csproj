@@ -27,6 +27,7 @@
     <PackageId>PanoramicData.Slack.Webhooks</PackageId>
     <ImplicitUsings>enable</ImplicitUsings>
     <NeutralResourcesLanguage>en</NeutralResourcesLanguage>
+    <TargetFramework>net10.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
     <Content Include="Panoramic Data.ico" />
