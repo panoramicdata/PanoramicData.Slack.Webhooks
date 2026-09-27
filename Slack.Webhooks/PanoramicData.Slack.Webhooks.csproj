@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <TargetFramework>net10.0</TargetFramework>
     <LangVersion>latest</LangVersion>
     <AnalysisLevel>latest-recommended</AnalysisLevel>
     <AnalysisMode>recommended</AnalysisMode>
@@ -20,14 +20,13 @@
     <PackageIcon>slack.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageTags>slack;webhook;webhooks</PackageTags>
-    <PackageReleaseNotes>First release as .NET Standard 2.0</PackageReleaseNotes>
+    <PackageReleaseNotes>Now targets .NET 10 only. .NET Standard 2.0, and therefore .NET Framework, is no longer supported.</PackageReleaseNotes>
     <IncludeSymbols>True</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageId>PanoramicData.Slack.Webhooks</PackageId>
     <ImplicitUsings>enable</ImplicitUsings>
     <NeutralResourcesLanguage>en</NeutralResourcesLanguage>
-    <TargetFramework>net10.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
     <Content Include="Panoramic Data.ico" />

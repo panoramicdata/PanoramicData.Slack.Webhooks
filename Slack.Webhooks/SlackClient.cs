@@ -30,8 +30,9 @@ public class SlackClient : ISlackClient, IDisposable
 	public SlackClient(string webhookUrl, int timeoutMs = 100, HttpClient? httpClient = null)
 	{
 		_httpClient = httpClient ?? new HttpClient();
-		if (!Uri.TryCreate(webhookUrl, UriKind.Absolute, out _webhookUri))
+		if (!Uri.TryCreate(webhookUrl, UriKind.Absolute, out var webhookUri))
 			throw new ArgumentException("Please enter a valid webhook url");
+		_webhookUri = webhookUri;
 		_timeoutMs = timeoutMs;
 	}
 
