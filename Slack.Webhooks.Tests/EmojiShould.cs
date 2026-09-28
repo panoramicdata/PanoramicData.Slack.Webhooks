@@ -25,7 +25,7 @@ public class EmojiShould
 		var deserialized = JsonConvert.DeserializeObject<string>("\":ghost:\"");
 
 		//assert
-		Assert.Equal(Emoji.Ghost.ToString(), deserialized.ToString());
+		Assert.Equal(Emoji.Ghost.ToString(), deserialized);
 	}
 
 	[Fact]

@@ -8,15 +8,15 @@ Even simpler integration with Slack's Incoming/Outgoing webhooks API for .net
 
 ### IMPORTANT
 
-On Feb 19th 2020 Slack will end support for TLS version 1.0 and 1.1. This means you may (depending on your .NET version) need to force the use of TLS1.2.
+This package targets **.NET 10** (`net10.0`) only. Earlier releases targeted .NET Standard 2.0, which also made them usable from .NET Framework; that is no longer the case. Projects on .NET Framework, or on a .NET version earlier than 10, should stay on the last .NET Standard 2.0 release.
 
-If you receive an error stating that "The underlying connection was closed:" it's quite possibly a TLS issue. You can work around this by setting the default TLS version using the following:
-
-```csharp
-System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-```
+Slack ended support for TLS 1.0 and 1.1 on 19 February 2020. .NET 10 negotiates TLS 1.2 or later by default, so no `ServicePointManager` workaround is needed.
 
 ### Change Log
+
+#### Unreleased
+
+- Target .NET 10 only; drop .NET Standard 2.0 (and therefore .NET Framework) support
 
 #### v1.1.4
 
@@ -56,7 +56,7 @@ Requirements:
 
 1. You must first enable the Webhooks integration for your Slack Account to get the Token. You can enable it here: https://slack.com/services/new/incoming-webhook
 2. Slack.Webhooks depends on JSON.net
-3. Compatible with .NET 4.5+ and .NET Core. If you need .NET 3.5/4 you can use an older release, but this may be out of date.
+3. Requires .NET 10 or later.
 
 Download:
 
@@ -64,12 +64,6 @@ Package is hosted on [Nuget](https://www.nuget.org/packages/Slack.Webhooks/) and
 
 ```
 PM> Install-Package Slack.Webhooks
-```
-
-For older .NET framework support:
-
-```
-PM> Install-Package Slack.Webhooks -Version 0.1.8
 ```
 
 Then, create a SlackClient with your Webhook URL.

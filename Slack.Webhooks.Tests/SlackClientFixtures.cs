@@ -91,9 +91,10 @@ public class SlackClientFixtures
 	{
 		//arrange
 		const string hookUrl = "https://hooks.slack.com/invalid";
-		SlackMessage postedMessage = null;
+		SlackMessage? postedMessage = null;
 		var httpMessageHandler = GetMockHttpMessageHandler(callback: (req, token) =>
 		{
+			Assert.NotNull(req.Content);
 			var json = req.Content.ReadAsStringAsync(token).GetAwaiter().GetResult();
 			postedMessage = SlackClient.DeserializeObject(json);
 		});
@@ -121,8 +122,11 @@ public class SlackClientFixtures
 		var channelsPostedTo = new List<string>();
 		var httpMessageHandler = GetMockHttpMessageHandler(callback: (req, token) =>
 		{
-			var json = req.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+			Assert.NotNull(req.Content);
+			var json = req.Content.ReadAsStringAsync(token).GetAwaiter().GetResult();
 			var postedMessage = SlackClient.DeserializeObject(json);
+			Assert.NotNull(postedMessage);
+			Assert.NotNull(postedMessage.Channel);
 			channelsPostedTo.Add(postedMessage.Channel);
 		});
 
@@ -142,7 +146,7 @@ public class SlackClientFixtures
 		}
 	}
 
-	private static Mock<HttpMessageHandler> GetMockHttpMessageHandler(string response = "OK", Action<HttpRequestMessage, CancellationToken> callback = null)
+	private static Mock<HttpMessageHandler> GetMockHttpMessageHandler(string response = "OK", Action<HttpRequestMessage, CancellationToken>? callback = null)
 	{
 		callback ??= new Action<HttpRequestMessage, CancellationToken>(delegate (HttpRequestMessage m, CancellationToken t) { });
 

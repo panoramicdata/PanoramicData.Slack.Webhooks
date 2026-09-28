@@ -26,6 +26,7 @@ Thank you for your interest in contributing to this project!
 - Use xUnit v3 for all tests
 - Use AwesomeAssertions for fluent assertions
 - Ensure all existing tests pass before submitting a PR
+- Tests that call live Slack or need a real webhook URL must carry `[Trait("Category", "Integration")]`; CI's coverage job excludes them because it runs without credentials
 
 ## License
 
