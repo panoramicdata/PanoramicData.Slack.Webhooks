@@ -36,7 +36,7 @@ public class SlackClient : ISlackClient, IDisposable
 		_timeoutMs = timeoutMs;
 	}
 
-	public virtual bool Post(SlackMessage slackMessage) => PostAsync(slackMessage, false).Result;
+	public virtual bool Post(SlackMessage slackMessage) => PostAsync(slackMessage, false).GetAwaiter().GetResult();
 
 	public bool PostToChannels(SlackMessage message, IEnumerable<string> channels) => channels.DefaultIfEmpty(message.Channel)
 				.Select(message.Clone)
@@ -54,7 +54,7 @@ public class SlackClient : ISlackClient, IDisposable
 
 		request.Content = new StringContent(slackMessage.AsJson(), System.Text.Encoding.UTF8, "application/json");
 		var response = await _httpClient.SendAsync(request).ConfigureAwait(configureAwait);
-		var content = await response.Content.ReadAsStringAsync();
+		var content = await response.Content.ReadAsStringAsync().ConfigureAwait(configureAwait);
 
 		return content.Equals(POST_SUCCESS, StringComparison.OrdinalIgnoreCase);
 	}

@@ -1,5 +1,4 @@
 using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 
@@ -107,6 +106,7 @@ public class SlackMessage
 		ReplaceOriginal = ReplaceOriginal,
 		ResponseType = ResponseType,
 		Text = Text,
+		ThreadId = ThreadId,
 		Username = Username
 	};
 
