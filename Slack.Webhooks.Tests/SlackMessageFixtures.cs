@@ -29,6 +29,8 @@ public class SlackMessageFixtures
 		Assert.Equal(message.Parse, clonedMessage.Parse);
 		Assert.Equal(message.Attachments, clonedMessage.Attachments);
 		Assert.Equal(message.Blocks, clonedMessage.Blocks);
+		Assert.Equal(message.ThreadId, clonedMessage.ThreadId);
+		Assert.Equal(message.Username, clonedMessage.Username);
 	}
 
 	private static SlackMessage GetSlackMessage() => new SlackMessage
