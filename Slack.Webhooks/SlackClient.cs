@@ -2,6 +2,7 @@
 using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -27,11 +28,15 @@ public class SlackClient : ISlackClient, IDisposable
 	/// </summary>
 	internal int TimeoutMs => _timeoutMs * 1000;
 
+	[SuppressMessage("Major Code Smell", "S2360:Optional parameters should not be used", Justification = "Published public API: replacing the optional parameters with overloads would break callers that pass httpClient by name.")]
 	public SlackClient(string webhookUrl, int timeoutMs = 100, HttpClient? httpClient = null)
 	{
 		_httpClient = httpClient ?? new HttpClient();
 		if (!Uri.TryCreate(webhookUrl, UriKind.Absolute, out var webhookUri))
+		{
 			throw new ArgumentException("Please enter a valid webhook url");
+		}
+
 		_webhookUri = webhookUri;
 		_timeoutMs = timeoutMs;
 	}
@@ -48,7 +53,7 @@ public class SlackClient : ISlackClient, IDisposable
 
 	public async Task<bool> PostAsync(SlackMessage slackMessage) => await PostAsync(slackMessage, true);
 
-	public async Task<bool> PostAsync(SlackMessage slackMessage, bool configureAwait = true)
+	public async Task<bool> PostAsync(SlackMessage slackMessage, bool configureAwait)
 	{
 		using var request = new HttpRequestMessage(HttpMethod.Post, _webhookUri);
 

@@ -1,6 +1,5 @@
-﻿using System.Collections.Generic;
-using AwesomeAssertions;
-using PanoramicData.Slack.Webhooks.Elements;
+﻿using PanoramicData.Slack.Webhooks.Elements;
+using System.Collections.Generic;
 using Xunit;
 
 namespace PanoramicData.Slack.Webhooks.Tests;
@@ -10,46 +9,21 @@ public class SelectStaticElementFixtures
 	[Fact]
 	public void ShouldSerializeOptions()
 	{
-		// arrange
-		var options = new List<Option> { new Option { Value = "Value123" } };
-		var select = new SelectStatic { Options = options };
-
-		// act
-		var optionsPayload = SlackClient.SerializeObject(options);
-		var payload = SlackClient.SerializeObject(select);
-
-		// assert
-		payload.Should().Contain($"\"options\":{optionsPayload}");
+		List<Option> options = [new Option { Value = "Value123" }];
+		SerializationAssert.ContainsProperty(new SelectStatic { Options = options }, "options", options);
 	}
 
 	[Fact]
 	public void ShouldSerializeInitialOption()
 	{
-		// arrange
 		var option = new Option { Value = "Value123" };
-		var select = new SelectStatic { InitialOption = option };
-
-		// act
-		var optionsPayload = SlackClient.SerializeObject(option);
-		var payload = SlackClient.SerializeObject(select);
-
-		// assert
-		payload.Should().Contain($"\"initial_option\":{optionsPayload}");
+		SerializationAssert.ContainsProperty(new SelectStatic { InitialOption = option }, "initial_option", option);
 	}
 
 	[Fact]
 	public void ShouldSerializeInitialOptionGroup()
 	{
-		// arrange
-		var options = new List<Option> { new Option { Value = "Value123" } };
-		var groups = new List<OptionGroup> { new OptionGroup { Options = options } };
-		var select = new SelectStatic { OptionGroups = groups };
-
-		// act
-		var groupsPayload = SlackClient.SerializeObject(groups);
-		var payload = SlackClient.SerializeObject(select);
-
-		// assert
-		payload.Should().Contain($"\"option_groups\":{groupsPayload}");
+		List<OptionGroup> groups = [new OptionGroup { Options = [new Option { Value = "Value123" }] }];
+		SerializationAssert.ContainsProperty(new SelectStatic { OptionGroups = groups }, "option_groups", groups);
 	}
 }

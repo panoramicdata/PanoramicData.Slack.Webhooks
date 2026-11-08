@@ -1,6 +1,9 @@
-﻿namespace PanoramicData.Slack.Webhooks;
+﻿using System.Diagnostics.CodeAnalysis;
 
+namespace PanoramicData.Slack.Webhooks;
 
+[SuppressMessage("Critical Code Smell", "S2339:Public constant members should not be used", Justification = "Published public API: consumers use these as compile-time constants (attribute arguments, default parameter values), and static readonly would be a binary-breaking change.")]
+[SuppressMessage("Major Code Smell", "S1118:Utility classes should not have public constructors", Justification = "Published public API: making the class static or its constructor protected removes the public constructor, a binary-breaking change.")]
 public class Emoji
 {
 	public const string None = null;
