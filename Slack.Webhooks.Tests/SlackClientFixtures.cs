@@ -22,7 +22,7 @@ public class SlackClientFixtures
 	{
 		//arrange
 		const string hookUrl = "https://hooks.slack.com/mygreathook";
-		var httpMessageHandler = GetMockHttpMessageHandler("OK");
+		var httpMessageHandler = GetMockHttpMessageHandler();
 		var client = new SlackClient(hookUrl, httpClient: new HttpClient(httpMessageHandler.Object, false));
 		var slackMessage = GetSlackMessage();
 
@@ -64,7 +64,7 @@ public class SlackClientFixtures
 	{
 		//arrange
 		const string hookUrl = "https://hooks.slack.com/invalid";
-		var httpMessageHandler = GetMockHttpMessageHandler("OK");
+		var httpMessageHandler = GetMockHttpMessageHandler();
 		var httpClient = new HttpClient(httpMessageHandler.Object, false);
 		var client = new SlackClient(hookUrl, httpClient: httpClient);
 		var slackMessage = GetSlackMessage();
@@ -148,7 +148,7 @@ public class SlackClientFixtures
 
 	private static Mock<HttpMessageHandler> GetMockHttpMessageHandler(string response = "OK", Action<HttpRequestMessage, CancellationToken>? callback = null)
 	{
-		callback ??= new Action<HttpRequestMessage, CancellationToken>(delegate (HttpRequestMessage m, CancellationToken t) { });
+		callback ??= (_, _) => { };
 
 		var httpMessageHandler = new Mock<HttpMessageHandler>(MockBehavior.Strict);
 		httpMessageHandler

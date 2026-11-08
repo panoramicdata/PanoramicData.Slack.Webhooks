@@ -1,6 +1,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace PanoramicData.Slack.Webhooks;
 
@@ -92,6 +93,7 @@ public class SlackMessage
 	/// <summary>
 	/// Create a clone of this <see cref="SlackMessage"/> overriding the channel if provided
 	/// </summary>
+	[SuppressMessage("Major Code Smell", "S2360:Optional parameters should not be used", Justification = "Published public API: an overload pair would break callers that bind Clone as a method group by natural type.")]
 	public SlackMessage Clone(string? newChannel = null) => new()
 	{
 		Attachments = Attachments,
