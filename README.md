@@ -1,22 +1,26 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-[![Codacy Badge](https://app.codacy.com/project/badge/grade/PanoramicData.Slack.Webhooks)](https://app.codacy.com/gh/panoramicdata/PanoramicData.Slack.Webhooks/dashboard)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/d113015e371e4ecb8f73d17f4dc59c1e)](https://app.codacy.com/gh/panoramicdata/PanoramicData.Slack.Webhooks/dashboard)
 
 # Slack.Webhooks ![Continuous Stuff](https://github.com/mrb0nj/Slack.Webhooks/workflows/Continuous%20Stuff/badge.svg?branch=master) [![NuGet Version](http://img.shields.io/nuget/v/Slack.Webhooks.svg?style=flat)](https://www.nuget.org/packages/Slack.Webhooks/)
+
+> **Need help with APIs or .NET?** Panoramic Data are experts in APIs and .NET, and we can help with your development. [Contact us](https://www.panoramicdata.com/contact-us) or see our [software services](https://www.panoramicdata.com/services/software).
+
+Supports .NET 11.0.
 
 Even simpler integration with Slack's Incoming/Outgoing webhooks API for .net
 
 ### IMPORTANT
 
-This package targets **.NET 10** (`net10.0`) only. Earlier releases targeted .NET Standard 2.0, which also made them usable from .NET Framework; that is no longer the case. Projects on .NET Framework, or on a .NET version earlier than 10, should stay on the last .NET Standard 2.0 release.
+This package targets **.NET 11** (`net11.0`) only. Earlier releases targeted .NET Standard 2.0, which also made them usable from .NET Framework; that is no longer the case. Projects on .NET Framework, or on a .NET version earlier than 11, should stay on the last .NET Standard 2.0 release.
 
-Slack ended support for TLS 1.0 and 1.1 on 19 February 2020. .NET 10 negotiates TLS 1.2 or later by default, so no `ServicePointManager` workaround is needed.
+Slack ended support for TLS 1.0 and 1.1 on 19 February 2020. .NET 11.0 negotiates TLS 1.2 or later by default, so no `ServicePointManager` workaround is needed.
 
 ### Change Log
 
 #### Unreleased
 
-- Target .NET 10 only; drop .NET Standard 2.0 (and therefore .NET Framework) support
+- Target .NET 11.0 only; drop .NET Standard 2.0 (and therefore .NET Framework) support
 
 #### v1.1.4
 
@@ -56,7 +60,7 @@ Requirements:
 
 1. You must first enable the Webhooks integration for your Slack Account to get the Token. You can enable it here: https://slack.com/services/new/incoming-webhook
 2. Slack.Webhooks depends on JSON.net
-3. Requires .NET 10 or later.
+3. Requires .NET 11.0 or later.
 
 Download:
 
